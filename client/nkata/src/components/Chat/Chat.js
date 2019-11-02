@@ -36,6 +36,7 @@ const Chat = ({ location }) => {
   }, [ENDPOINT, location.search]);
 
   useEffect(() => {
+    // add any message to the messages array
     socket.on('message', (message) => {
       setMessages([...messages, message ]);
     });
@@ -49,9 +50,12 @@ const Chat = ({ location }) => {
 
       socket.off();
     }
+    // run this particular useEfect only when the messages array changes
   }, [messages])
 
+  // function for sending messages  
   const sendMessage = (event) => {
+    // diallow full browser refresh
     event.preventDefault();
 
     if(message) {
