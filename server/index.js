@@ -14,7 +14,7 @@ const server = http.createServer(app)
 const io = socketio(server);
 
 io.on('connection', (socket) => {
-    socket.on('join', ({ name, join }, callback) => {
+    socket.on('join', ({ name, room }, callback) => {
         const { error, user } = addUser({ id: socket.id, name, room });
 
         if(error) return callback(error);
